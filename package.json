@@ -1,0 +1,48 @@
+{
+  "publisher": "We Are",
+  "license": "Apache-2.0",
+  "name": "@weare/weare-expressjs",
+  "version": "0.0.26",
+  "description": "We Are libraries used for NodeJS + ExpressJS.",
+  "author": "VITO NV",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rollup --config rollup.config.mjs"
+  },
+  "main": "dist/main.js",
+  "module": "dist/main.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "keywords": [
+    "We Are",
+    "Health",
+    "Belgium",
+    "Solid",
+    "Social Linked Data"
+  ],
+  "dependencies": {
+    "@inrupt/solid-client-access-grants": "^3.2.1",
+    "@inrupt/solid-client-authn-node": "^2.3.0",
+    "@weare/weare-core": "^0.0.23",
+    "express-http-context": "^1.2.4",
+    "loglevel": "^1.9.2",
+    "n3": "^1.23.1",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@types/n3": "^1.21.1",
+    "@types/node": "^22.10.6",
+    "@types/express": "^5.0.0",
+    "@types/express-fileupload": "^1.5.1",
+    "@types/express-session": "^1.18.1",
+    "dotenv": "^16.4.7",
+    "rollup": "^4.30.1",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "~5.7.3"
+  }
+}
