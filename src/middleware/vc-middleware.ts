@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from "express";
 import log from "loglevel";
-import {VcServiceV2} from "@weare/weare-core";
+import {VcServiceV2} from "@vito-nv/weare-core";
 import httpContext from "express-http-context";
 import {AccessGrantFilter} from "@inrupt/solid-client-access-grants/dist/gConsent/query/query";
 

@@ -1,7 +1,7 @@
 import {Request, Response, NextFunction} from "express";
 import {HttpError} from "../http-error/http-error";
-import {turtleAsSolidDataset} from "@weare/weare-core";
-import { PodService } from "@weare/weare-core";
+import {turtleAsSolidDataset} from "@vito-nv/weare-core";
+import { PodService } from "@vito-nv/weare-core";
 import httpContext from "express-http-context";
 import {convertUploadedFileToFile, validateSession} from "../helper/resource-helper";
 import {UploadedFile} from "express-fileupload";
