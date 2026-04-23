@@ -6,4 +6,3 @@ export { getPods, getPodsMandatory, getPodsOptional, getPodsMandatoryOrOptional 
 export { HttpError } from "./http-error/http-error";
 export { getResource, getFile, writeFile, writeResource } from "./middleware/resource-middleware";
 export { overrideSessionData } from "./session/session-data";
-export { getSessionFromStorageWrapper } from "./helper/session-helper"
