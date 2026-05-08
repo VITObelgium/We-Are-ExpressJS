@@ -2,7 +2,7 @@
   "publisher": "We Are",
   "license": "Apache-2.0",
   "name": "@vito-nv/weare-expressjs",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "We Are libraries used for NodeJS + ExpressJS.",
   "author": "VITO NV",
   "publishConfig": {
@@ -28,7 +28,7 @@
   "dependencies": {
     "@inrupt/solid-client-access-grants": "^3.2.1",
     "@inrupt/solid-client-authn-node": "^2.3.0",
-    "@vito-nv/weare-core": "^1.0.13",
+    "@vito-nv/weare-core": "^1.0.14",
     "express-http-context": "^1.2.4",
     "loglevel": "^1.9.2",
     "n3": "^1.23.1",
