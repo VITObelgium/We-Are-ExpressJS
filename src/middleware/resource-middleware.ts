@@ -5,8 +5,9 @@ import { PodService } from "@vito-nv/weare-core";
 import httpContext from "express-http-context";
 import {convertUploadedFileToFile, validateSession} from "../helper/resource-helper";
 import {UploadedFile} from "express-fileupload";
-import {fromRdfJsDataset} from "@inrupt/solid-client";
+import {fromRdfJsDataset, FetchError} from "@inrupt/solid-client";
 import {Parser, Store} from "n3";
+import log from "loglevel";
 
 /**
  * Middleware to retrieve a resource from the user's pod and store the SolidDataset in `res.locals`.
@@ -46,6 +47,7 @@ export async function getResource(this: { resourceUrlParameterKey: string, podSe
 /**
  * Middleware to delete and write a SolidDataset to the user's pod.
  * Validates the session, retrieves the resource URL from the query parameters, deletes the existing dataset, and writes the new dataset from the request body.
+ * If deleting the existing dataset fails with a 404 (nothing to delete), the write proceeds; any other delete error is propagated.
  *
  * @param {Object} this - The context object containing the resource URL parameter key and pod service instance.
  * @param {Request} req - The Express request object, containing the body and query parameters.
@@ -68,7 +70,16 @@ export async function writeResource(this: { resourceUrlParameterKey: string, pod
 
         const accessGrant = JSON.parse(req.session.accessGrant!);
 
-        await this.podService.deleteSolidDataset(new URL(resourceUrl as string), accessGrant, httpContext.get('correlationId'));
+        // Delete the existing dataset first. A 404 (nothing to delete) is ignored; any other delete error is propagated.
+        try {
+            await this.podService.deleteSolidDataset(new URL(resourceUrl as string), accessGrant, httpContext.get('correlationId'));
+        } catch (error: any) {
+            if (!error.statusCode || (error.statusCode !== 404)) {
+                throw error;
+            }
+            log.debug(`[writeResource] Dataset [${resourceUrl}] not found (404), nothing to delete. Continuing with write.`);
+        }
+
         await this.podService.writeSolidDataset(new URL(resourceUrl as string), turtleAsSolidDataset(req.body), accessGrant, httpContext.get('correlationId'));
 
         next();

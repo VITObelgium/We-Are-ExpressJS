@@ -4,13 +4,19 @@ import {UploadedFile} from "express-fileupload";
 
 /**
  * Validates the session to ensure it is authenticated and has a valid access grant.
+ * The session is considered authenticated when either:
+ * - A logged-in Solid session is present on `res.locals.session`, or
+ * - An authenticated Web ID context is present on `res.locals.webId` (e.g. resolved from an HTI token).
  * @param {Request} req - The Express request object.
  * @param {Response} res - The Express response object.
  * @throws {HttpError} Throws an error if the session is not valid or if there is no access grant.
  */
 export function validateSession(req: Request, res: Response) {
-    if (!res.locals.session?.info?.webId ||
-        !res.locals.session?.info.isLoggedIn || !req.session?.solidSid) {
+    const hasSolidSession = !!(res.locals.session?.info?.webId &&
+        res.locals.session?.info.isLoggedIn && req.session?.solidSid);
+    const hasWebIdContext = !!res.locals.webId;
+
+    if (!hasSolidSession && !hasWebIdContext) {
         throw new HttpError(
     "No valid authenticated session found.",
     401
