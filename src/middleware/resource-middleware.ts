@@ -5,8 +5,6 @@ import { PodService } from "@vito-nv/weare-core";
 import httpContext from "express-http-context";
 import {convertUploadedFileToFile, validateSession} from "../helper/resource-helper";
 import {UploadedFile} from "express-fileupload";
-import {fromRdfJsDataset, FetchError} from "@inrupt/solid-client";
-import {Parser, Store} from "n3";
 import log from "loglevel";
 
 /**
