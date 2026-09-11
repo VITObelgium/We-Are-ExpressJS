@@ -2,7 +2,7 @@
   "publisher": "We Are",
   "license": "Apache-2.0",
   "name": "@vito-nv/weare-expressjs",
-  "version": "1.0.14",
+  "version": "1.0.25",
   "description": "We Are libraries used for NodeJS + ExpressJS.",
   "author": "VITO NV",
   "publishConfig": {
