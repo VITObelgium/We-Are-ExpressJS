@@ -5,4 +5,4 @@ export { validateAccessGrant, fetchAccessGrants } from "./middleware/vc-middlewa
 export { getPods, getPodsMandatory, getPodsOptional, getPodsMandatoryOrOptional } from "./middleware/pod-middleware";
 export { HttpError } from "./http-error/http-error";
 export { getResource, getFile, writeFile, writeResource } from "./middleware/resource-middleware";
-export { getSessionFromStorageWrapper } from "./helper/session-helper"
+export { overrideSessionData } from "./session/session-data";

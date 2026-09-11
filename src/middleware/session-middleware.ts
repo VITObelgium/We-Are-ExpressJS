@@ -1,6 +1,5 @@
 import {Request, Response, NextFunction} from "express";
 import {getSessionFromStorage, IStorage} from "@inrupt/solid-client-authn-node";
-import {getSessionFromStorageWrapper} from "../helper/session-helper";
 
 /**
  * Middleware to fetch the session from storage and expose it to the next middleware.
@@ -75,9 +74,10 @@ async function getSessionMandatoryOrOptional(
             }
         }
 
-        res.locals.session = await getSessionFromStorageWrapper(
-            req.session.solidSid!,
-            this?.storage as IStorage | undefined
+        res.locals.session = await getSessionFromStorage(
+            req.session.solidSid!, {
+                storage: this?.storage as IStorage | undefined
+            }
         ).catch(() => { /* ignore error, handled below */ });
 
         if (mandatory && (!res.locals.session?.info?.webId || !res.locals.session?.info?.isLoggedIn)) {
