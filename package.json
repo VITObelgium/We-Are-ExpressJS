@@ -9,6 +9,10 @@
     "access": "public"
   },
   "scripts": {
+    "clean-node-modules": "rimraf node_modules/",
+    "clean-install": "npm run clean-node-modules && npm install",
+    "clean": "rimraf tsconfig.tsbuildinfo dist/",
+    "clean-build": "npm run clean && npm run build",
     "build": "rollup --config rollup.config.mjs"
   },
   "main": "dist/main.js",
@@ -29,7 +33,7 @@
   "dependencies": {
     "@inrupt/solid-client-access-grants": "^3.2.1",
     "@inrupt/solid-client-authn-node": "^2.3.0",
-    "@vito-nv/weare-core": "^1.0.25",
+    "@vito-nv/weare-core": "^1.0.26",
     "express-http-context": "^1.2.4",
     "loglevel": "^1.9.2",
     "n3": "^1.23.1",
